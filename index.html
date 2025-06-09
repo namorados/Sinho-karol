@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nosso Amor ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      color: #333;
+      overflow-x: hidden;
+    }
+    .section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+    h1 {
+      color: #d23369;
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.2em;
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+    img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 15px;
+      margin: 20px 0;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .btn {
+      background: #d23369;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 20px;
+      transition: all 0.3s;
+    }
+    .btn:hover {
+      background: #ff6b8b;
+      transform: scale(1.05);
+    }
+    .floating-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      color: #ff3366;
+      animation: float 6s linear infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+    }
+    #typed-text {
+      min-height: 100px;
+      font-size: 1.2em;
+      color: #d23369;
+    }
+    .botao-musica {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 999;
+      background: #d23369;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    /* Novo estilo para o texto da história */
+    .historia-texto {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: justify;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Botão de Música -->
+  <button onclick="document.getElementById('musica').play()" class="botao-musica">🎵 Tocar Música</button>
+  <audio id="musica" loop>
+    <source src="musica/musica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio em HTML5.
+  </audio>
+
+  <!-- Corações Flutuantes -->
+  <div class="floating-hearts" id="hearts"></div>
+
+  <!-- Página 1 - Capa -->
+  <div class="section" id="home">
+    <h1>Feliz Dia dos Namorados! ❤️</h1>
+    <p>Nosso amor merece ser celebrado...</p>
+    <img src="fotos/capa.jpg" alt="Foto da Capa">
+    <a href="#story" class="btn">Clique e veja nossa história</a>
+  </div>
+
+  <!-- Página 2 - História (MODIFICADA) -->
+  <div class="section" id="story">
+    <h1>Nossa História</h1>
+    <img src="fotos/historia.jpg" alt="Foto da História">
+    
+    <!-- ÁREA DE TEXTO EDITÁVEL -->
+    <div class="historia-texto">
+      <p>Tudo começou em [ano], quando nos encontramos pela primeira vez em [local]. 
+      Eu lembro como se fosse hoje... [descreva a primeira impressão ou momento especial].</p>
+      
+      <p>Com o tempo, nosso amor foi crescendo através de [mencione experiências importantes]. 
+      Cada momento juntos, como [cite exemplos de momentos marcantes], só fortaleceu nossa conexão.</p>
+      
+      <p>O que mais me encanta em você é [liste qualidades ou coisas especiais]. 
+      Você me faz sentir [descreva sentimentos] todos os dias.</p>
+      
+      <p>Esta é apenas o começo da nossa jornada, e mal posso esperar para viver 
+      muitos outros capítulos ao seu lado. Te amo mais que tudo!</p>
+    </div>
+    <!-- FIM DA ÁREA EDITÁVEL -->
+    
+    <a href="#message" class="btn">Veja minha mensagem especial</a>
+  </div>
+
+  <!-- Página 3 - Mensagem -->
+  <div class="section" id="message">
+    <h1>Para você, meu amor...</h1>
+    <img src="fotos/final.jpg" alt="Foto Final">
+    <p id="secret-message" style="display: none;">
+      Esta é a mensagem mais importante... Eu te amo mais que tudo!
+    </p>
+    <button onclick="revealMessage()" class="btn">Clique para revelar</button>
+    <a href="#home" class="btn">Voltar ao início</a>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Corações flutuantes
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+      document.getElementById('hearts').appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 8000);
+    }
+    setInterval(createHeart, 300);
+
+    // Revelar mensagem
+    function revealMessage() {
+      document.getElementById("secret-message").style.display = "block";
+    }
+  </script>
+
+  <script src="js/texto.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let i = 0;
+      function typeWriter() {
+        if (i < text.length) {
+          document.getElementById("typed-text").innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, 50);
+        }
+      }
+      typeWriter();
+    });
+  </script>
+</body>
+</html>
